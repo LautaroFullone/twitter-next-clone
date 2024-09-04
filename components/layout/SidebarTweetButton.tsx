@@ -1,15 +1,22 @@
 'use client'
 
+import useLoginModalState from '@/hooks/useLoginModalState'
 import { useRouter } from 'next/navigation'
+import { useCallback } from 'react'
 import { FaFeather } from 'react-icons/fa'
 
 interface SidebarTweetButton {}
 
 export const SidebarTweetButton: React.FC<SidebarTweetButton> = () => {
    const router = useRouter()
+   const loginModalState = useLoginModalState()
+
+   const onClick = useCallback(() => {
+      loginModalState.onOpen()
+   }, [loginModalState])
 
    return (
-      <div onClick={() => router.push('/')}>
+      <div onClick={onClick}>
          <div
             className="lg:hidden
                mt-6

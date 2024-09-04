@@ -117,7 +117,7 @@ export const Modal: React.FC<ModalProps> = ({
                   <div className="realtive p-10 flex-auto">{body}</div>
 
                   {/* Footer */}
-                  <div className="felx felx-col gap-2 p-10">
+                  <div className="flex flex-col gap-2 p-10">
                      <Button
                         disabled={disabled}
                         label={actionLabel}
