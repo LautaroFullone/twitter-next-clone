@@ -1,15 +1,14 @@
-import fetcher from '@/libs/fetcher'
 import useSWR from 'swr'
+import fetcher from '@/libs/fetcher'
+import { User } from '@/models/User'
 
-function useCurrentUser() {
+export default function useCurrentUser() {
    const { data, error, isLoading, mutate } = useSWR('/api/current', fetcher)
 
    return {
-      data,
+      currentUser: data as User,
       error,
       isLoading,
       mutate,
    }
 }
-
-export default useCurrentUser

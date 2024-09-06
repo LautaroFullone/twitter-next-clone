@@ -1,11 +1,17 @@
-import { BsBellFill, BsHouseFill } from 'react-icons/bs'
+'use client'
+
 import { FaUser } from 'react-icons/fa'
+import { BsBellFill, BsHouseFill } from 'react-icons/bs'
+import { BiLogOut } from 'react-icons/bi'
+import { signOut } from 'next-auth/react'
 import { SidebarLogo } from './SidebarLogo'
 import { SidebarItem } from './SidebarItem'
-import { BiLogOut } from 'react-icons/bi'
 import { SidebarTweetButton } from './SidebarTweetButton'
+import useCurrentUser from '@/hooks/useCurrentUser'
 
 export const Sidebar = () => {
+   const { currentUser } = useCurrentUser()
+
    const items = [
       {
          label: 'Home',
@@ -23,6 +29,7 @@ export const Sidebar = () => {
          icon: FaUser,
       },
    ]
+
    return (
       <div className="col-span-1 h-full pr-4 md:pr-6">
          <div className="flex flex-col items-end">
@@ -38,12 +45,13 @@ export const Sidebar = () => {
                   />
                ))}
 
-               <SidebarItem
-                  onClick={() => {}}
-                  label={'Logout'}
-                  icon={BiLogOut}
-               />
-
+               {currentUser && (
+                  <SidebarItem
+                     onClick={() => signOut()}
+                     label="Logout"
+                     icon={BiLogOut}
+                  />
+               )}
                <SidebarTweetButton />
             </div>
          </div>
