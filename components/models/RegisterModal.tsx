@@ -6,6 +6,8 @@ import { Modal } from '../Modal'
 import useLoginModalState from '@/hooks/useLoginModalState'
 import useRegisterModalState from '@/hooks/useRegisterModalState'
 import axios from 'axios'
+import toast from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
 
 export const RegisterModal = () => {
    const loginModalState = useLoginModalState()
@@ -37,9 +39,14 @@ export const RegisterModal = () => {
             name,
          })
 
+         toast.success('Account created', { duration: 2000 })
+
+         signIn('credentials', { email, password })
+
          registerModalState.onClose()
       } catch (error) {
          console.log(error)
+         toast.error('Something went wrong')
       } finally {
          setIsLoading(false)
       }

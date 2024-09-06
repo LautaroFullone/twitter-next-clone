@@ -6,11 +6,11 @@ import { LoginModal } from '@/components/models/LoginModal'
 import { RegisterModal } from '@/components/models/RegisterModal'
 import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
-
-import './globals.css'
 import ClientSessionProvider from '@/components/ClientSessionProvider'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
+
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
