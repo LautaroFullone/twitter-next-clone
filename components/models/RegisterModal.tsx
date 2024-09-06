@@ -5,6 +5,7 @@ import { Input } from '../Input'
 import { Modal } from '../Modal'
 import useLoginModalState from '@/hooks/useLoginModalState'
 import useRegisterModalState from '@/hooks/useRegisterModalState'
+import axios from 'axios'
 
 export const RegisterModal = () => {
    const loginModalState = useLoginModalState()
@@ -29,7 +30,12 @@ export const RegisterModal = () => {
       try {
          setIsLoading(true)
 
-         // TODO: Register logic
+         await axios.post('/api/register', {
+            email,
+            password,
+            username,
+            name,
+         })
 
          registerModalState.onClose()
       } catch (error) {
@@ -37,7 +43,7 @@ export const RegisterModal = () => {
       } finally {
          setIsLoading(false)
       }
-   }, [registerModalState])
+   }, [email, name, password, username, registerModalState])
 
    return (
       <Modal
